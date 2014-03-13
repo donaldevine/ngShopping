@@ -1,0 +1,72 @@
+<html ng-app>
+    <head>
+        <title>Your shopping cart</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+
+        <!-- Mobile Specific Metas
+      ================================================== -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- CSS
+  ================================================== -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+    <link rel="stylesheet" href="css/layout.css">
+
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Favicons
+    ================================================== -->
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">
+
+
+        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+    </head>
+    <body ng-controller="CartController">
+        <div class="container">
+            <div class="sixteen columns">
+                <h1>Your order</h1>
+
+                <div ng-repeat='item in items'>
+                    <span>{{item.title}}</span>
+                    <input ng-model='item.quantity'>
+                    <span>{{item.price | currency}}</span>
+                    <span>{{item.price * item.quantity | currency}}</span>
+                    <button ng-click="remove($index)">Remove</button>
+                </div>
+
+                <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.js"></script>
+                <script src="js/plugins.js"></script>
+                <script src="js/main.js"></script>
+
+                <script>
+                    function CartController ($scope) {
+                        $scope.items = [
+                            {title: 'Widgets', quantity: 8, price: 3.95},
+                            {title: 'More Stuff', quantity: 15, price: 58.88},
+                            {title: 'Chips', quantity: 8, price: 2.55}
+                        ];
+
+                        $scope.remove = function(index){
+                            $scope.items.splice(index, 1);
+                        }
+                    }
+                </script>
+            </div>
+        </div>
+    </body>
+</html>
